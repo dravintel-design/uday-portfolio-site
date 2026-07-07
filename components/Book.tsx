@@ -3,9 +3,8 @@
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
-// Swap for the exact Amazon product URL when available.
 const AMAZON_URL =
-  "https://www.amazon.com/s?k=Before+the+Screen+22+Laws+of+UX+Thinking";
+  "https://www.amazon.com/Before-Screen-22-Laws-Thinking-ebook/dp/B0GKFRZZFS";
 
 const EASE_OUT_EXPO: [number, number, number, number] = [0.22, 1, 0.36, 1];
 

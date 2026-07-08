@@ -121,11 +121,11 @@ export default function Overlay({ heroRef }: OverlayProps) {
             willChange: "transform",
           }}
         >
-          K<span style={{ WebkitTextStroke: "0px", color: "#acec00" }}>.</span>
+          K
         </motion.span>
 
-        {/* Scroll cue: centred on the image, level with the U and K */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Scroll cue: centre bottom */}
+        <div className="absolute inset-x-0 bottom-[5vh] flex justify-center">
           <motion.div
             className="flex flex-col items-center gap-2"
             animate={{ y: [-8, 0, -8] }}

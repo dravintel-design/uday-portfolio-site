@@ -128,8 +128,8 @@ export default function Footer() {
 
       <div className="border-t border-white/10 py-6">
         <p className="text-center text-sm text-neutral-500">
-          © 2026 Udaya Kumar Sivagurunathan. Built with AI, designed with
-          intention.
+          © 2026 Udaya Kumar Sivagurunathan. Built with UX Thinking, designed
+          with intention.
         </p>
       </div>
     </footer>

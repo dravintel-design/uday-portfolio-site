@@ -64,9 +64,11 @@ export default function Overlay({ heroRef }: OverlayProps) {
           position: "absolute",
           inset: 0,
           display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center",
-          paddingBottom: "6vh",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: "1.5rem",
+          paddingBottom: "5vh",
           opacity: ghostOpacity,
           willChange: "opacity, transform",
         }}
@@ -83,6 +85,28 @@ export default function Overlay({ heroRef }: OverlayProps) {
         >
           UK
         </h1>
+        {/* Scroll cue: the hero is scroll-driven, so invite the first scroll */}
+        <motion.div
+          className="flex flex-col items-center gap-2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60 md:text-sm">
+            Scroll Down
+          </p>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-5 w-5 text-[#acec00]"
+            aria-hidden
+          >
+            <path d="M12 5v14M6 13l6 6 6-6" />
+          </svg>
+        </motion.div>
       </motion.div>
 
       {/* PHASE 2 — Name intro block (bottom-anchored so the face stays clear) */}

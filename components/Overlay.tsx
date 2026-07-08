@@ -22,6 +22,13 @@ export default function Overlay({ heroRef }: OverlayProps) {
     [0, 0.1, 0.18, 0.28, 1],
     [1, 1, 1, 0, 0]
   );
+  // The flanking letters drift apart as they fade out
+  const ghostLeftX = useTransform(
+    scrollYProgress,
+    [0, 0.28, 1],
+    [0, -80, -80]
+  );
+  const ghostRightX = useTransform(scrollYProgress, [0, 0.28, 1], [0, 80, 80]);
 
   // PHASE 2 — Name intro block (0.28–0.52)
   const nameOpacity = useTransform(
@@ -69,43 +76,61 @@ export default function Overlay({ heroRef }: OverlayProps) {
         zIndex: 10,
       }}
     >
-      {/* PHASE 1 — Ghost watermark (bottom-anchored so the face stays clear) */}
+      {/* PHASE 1 — U and K flank the centred portrait, drifting apart on scroll */}
       <motion.div
         style={{
           position: "absolute",
           inset: 0,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          gap: "1.5rem",
-          paddingBottom: "5vh",
           opacity: ghostOpacity,
-          willChange: "opacity, transform",
+          willChange: "opacity",
         }}
       >
-        <h1
+        <h1 className="sr-only">UK</h1>
+        <motion.span
+          aria-hidden
           style={{
-            fontSize: "clamp(5rem, 15vw, 14rem)",
+            position: "absolute",
+            left: "clamp(1rem, 7vw, 8rem)",
+            top: "50%",
+            x: ghostLeftX,
+            y: "-50%",
+            fontSize: "clamp(5rem, 16vw, 15rem)",
             fontWeight: 800,
-            letterSpacing: "0.01em",
             lineHeight: 1,
-            textAlign: "center",
-            // Hollow, outlined wordmark instead of a flat watermark fill
+            // Hollow, outlined letterforms
             color: "transparent",
             WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.45)",
+            willChange: "transform",
           }}
         >
-          UK
-          <span style={{ WebkitTextStroke: "0px", color: "#acec00" }}>.</span>
-        </h1>
+          U
+        </motion.span>
+        <motion.span
+          aria-hidden
+          style={{
+            position: "absolute",
+            right: "clamp(1rem, 7vw, 8rem)",
+            top: "50%",
+            x: ghostRightX,
+            y: "-50%",
+            fontSize: "clamp(5rem, 16vw, 15rem)",
+            fontWeight: 800,
+            lineHeight: 1,
+            color: "transparent",
+            WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.45)",
+            willChange: "transform",
+          }}
+        >
+          K<span style={{ WebkitTextStroke: "0px", color: "#acec00" }}>.</span>
+        </motion.span>
+
         {/* Scroll cue: the hero is scroll-driven, so invite the first scroll */}
         <motion.div
-          className="flex flex-col items-center gap-2"
+          className="absolute bottom-[5vh] left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60 md:text-sm">
+          <p className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.35em] text-white/60 md:text-sm">
             Always Up
           </p>
           <svg

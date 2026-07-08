@@ -191,7 +191,7 @@ export default function Overlay({ heroRef }: OverlayProps) {
             whiteSpace: "pre-line",
           }}
         >
-          {"UX AI Educator &\nLead UX Designer."}
+          {"Author &\nUX AI Educator."}
         </h2>
       </motion.div>
 

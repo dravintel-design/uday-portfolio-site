@@ -8,10 +8,27 @@ const poppins = Poppins({
   display: "swap",
 });
 
+const SITE_TITLE =
+  "Udaya Kumar Sivagurunathan | Lead UX Designer | Author | Gen AI Architect";
+const SITE_DESCRIPTION =
+  "Website of Udaya Kumar Sivagurunathan | Lead UX Designer | Author | Gen AI Architect.";
+
 export const metadata: Metadata = {
-  title: "UDAYA KUMAR SIVAGURUNATHAN | LEAD UX DESIGNER & AGENTIC AI ARCHITECT",
-  description:
-    "Cinematic portfolio of Udaya Kumar Sivagurunathan: Lead UX Designer & Agentic AI Architect.",
+  metadataBase: new URL("https://www.udayakumar.in"),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "https://www.udayakumar.in",
+    siteName: "Udaya Kumar Sivagurunathan",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({

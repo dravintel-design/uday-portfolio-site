@@ -124,12 +124,13 @@ export default function Overlay({ heroRef }: OverlayProps) {
           K<span style={{ WebkitTextStroke: "0px", color: "#acec00" }}>.</span>
         </motion.span>
 
-        {/* Scroll cue: the hero is scroll-driven, so invite the first scroll */}
-        <motion.div
-          className="absolute bottom-[5vh] left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        >
+        {/* Scroll cue: centred on the image, level with the U and K */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            className="flex flex-col items-center gap-2"
+            animate={{ y: [-8, 0, -8] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          >
           <p className="whitespace-nowrap text-xs font-semibold uppercase tracking-[0.35em] text-white/60 md:text-sm">
             Always Up
           </p>
@@ -145,7 +146,8 @@ export default function Overlay({ heroRef }: OverlayProps) {
           >
             <path d="M12 19V5M6 11l6-6 6 6" />
           </svg>
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* PHASE 2 — Name intro block (bottom-anchored so the face stays clear) */}

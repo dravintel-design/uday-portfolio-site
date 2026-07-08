@@ -41,12 +41,23 @@ export default function Overlay({ heroRef }: OverlayProps) {
     [0, 0.52, 0.62, 0.7, 0.78, 1],
     [0, 0, 1, 1, 0, 0]
   );
+  // Glides in from the left as the photo settles into its right-side profile
+  const roleX = useTransform(
+    scrollYProgress,
+    [0, 0.52, 0.64, 1],
+    [-80, -80, 0, 0]
+  );
 
   // PHASE 4 — Main headline (0.78–1.00)
   const headlineOpacity = useTransform(
     scrollYProgress,
     [0, 0.78, 0.88, 0.96, 1.0],
     [0, 0, 1, 1, 0]
+  );
+  const headlineX = useTransform(
+    scrollYProgress,
+    [0, 0.78, 0.9, 1],
+    [-80, -80, 0, 0]
   );
 
   return (
@@ -156,26 +167,27 @@ export default function Overlay({ heroRef }: OverlayProps) {
         </p>
       </motion.div>
 
-      {/* PHASE 3 — Role statement (bottom-anchored so the face stays clear) */}
+      {/* PHASE 3 — Role statement (left side: the photo faces left from the right) */}
       <motion.div
         style={{
           position: "absolute",
           inset: 0,
           display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center",
-          padding: "0 1.5rem 12vh",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          padding: "0 1.5rem 0 clamp(1.5rem, 7vw, 7rem)",
           opacity: roleOpacity,
+          x: roleX,
           willChange: "opacity, transform",
         }}
       >
         <h2
           style={{
-            fontSize: "clamp(2.5rem, 7vw, 7rem)",
+            fontSize: "clamp(2.5rem, 6vw, 6rem)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 1.05,
-            textAlign: "center",
+            textAlign: "left",
             whiteSpace: "pre-line",
           }}
         >
@@ -183,28 +195,29 @@ export default function Overlay({ heroRef }: OverlayProps) {
         </h2>
       </motion.div>
 
-      {/* PHASE 4 — Main headline (bottom-anchored so the face stays clear) */}
+      {/* PHASE 4 — Main headline (left side: the photo faces left from the right) */}
       <motion.div
         style={{
           position: "absolute",
           inset: 0,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "flex-end",
+          alignItems: "flex-start",
+          justifyContent: "center",
           gap: "1.25rem",
-          padding: "0 1.5rem 10vh",
+          padding: "0 1.5rem 0 clamp(1.5rem, 7vw, 7rem)",
           opacity: headlineOpacity,
+          x: headlineX,
           willChange: "opacity, transform",
         }}
       >
         <h2
           style={{
-            fontSize: "clamp(2rem, 5.5vw, 5.5rem)",
+            fontSize: "clamp(2rem, 5vw, 5rem)",
             fontWeight: 700,
             letterSpacing: "-0.03em",
             lineHeight: 1.1,
-            textAlign: "center",
+            textAlign: "left",
             whiteSpace: "pre-line",
           }}
         >

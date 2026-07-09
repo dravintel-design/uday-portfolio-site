@@ -3,10 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 
-const FRAME_COUNT = 121;
+const FRAME_COUNT = 193;
 
+// Source frames are 1-indexed with 4-digit padding: frame_0001..frame_0193.
 function frameSrc(index: number): string {
-  return `/sequence/frame_${String(index).padStart(3, "0")}.webp`;
+  return `/sequence/frame_${String(index + 1).padStart(4, "0")}.webp`;
 }
 
 interface ScrollyCanvasProps {
